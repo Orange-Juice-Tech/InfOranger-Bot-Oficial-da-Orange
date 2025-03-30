@@ -24,6 +24,9 @@
       "@configs/*": [
         "src/configs/*"
       ],
+      "@loaders/*": [
+        "src/loaders/*"
+      ],
       "@storage/*": [
         "src/storage/*"
       ],
@@ -33,6 +36,9 @@
       "@shared/*": [
         "src/shared/*"
       ],
+      "src/*": [
+        "src/*"
+      ]
     }, // A series of entries which re-map imports to lookup locations relative to the baseUrl
     // Source Map
     "sourceMap": false, // enables the use of source maps for debuggers and error reporting etc
