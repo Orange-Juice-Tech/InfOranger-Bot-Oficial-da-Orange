@@ -1,4 +1,10 @@
-import { Client, Collection, GatewayIntentBits, Partials } from "discord.js";
+import {
+  Client,
+  ClientEvents,
+  Collection,
+  GatewayIntentBits,
+  Partials,
+} from "discord.js";
 import secrets from "@configs/secrets";
 import {
   CommandType,
@@ -6,6 +12,7 @@ import {
   ComponentsModal,
   ComponentsSelect,
 } from "@interfaces/commands";
+import { EventTypes } from "@interfaces/events";
 
 export class ClientDiscord extends Client {
   public commands: Collection<string, CommandType> = new Collection();
@@ -31,7 +38,33 @@ export class ClientDiscord extends Client {
     });
   }
 
-  async start() {
+  public async start() {
     await this.login(secrets.DISCORD_TOKEN);
   }
+
+  public async registerEvents<K extends keyof ClientEvents>(
+    event: EventTypes<K>,
+  ): Promise<void> {
+    const { name, once, execute } = event;
+
+    if (once) {
+      this.once(name, async (...args: ClientEvents[K]) => {
+        try {
+          execute(...args, this);
+        } catch (error) {
+          console.error(`Error executing event ${name}:`, error);
+        }
+      });
+    } else {
+      this.on(name, async (...args: ClientEvents[K]) => {
+        try {
+          execute(...args, this);
+        } catch (error) {
+          console.error(`Error executing event ${name}:`, error);
+        }
+      });
+    }
+  }
+
+  public async registerCommands() {}
 }
