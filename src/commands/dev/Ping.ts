@@ -1,5 +1,5 @@
 import { Command } from "@interfaces/commands";
-import { ApplicationCommandType } from "discord.js";
+import { ApplicationCommandType, MessageFlags } from "discord.js";
 
 export default new Command({
   name: "ping",
@@ -10,7 +10,7 @@ export default new Command({
 
     await interaction.reply({
       content: "Pong!",
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   },
 });

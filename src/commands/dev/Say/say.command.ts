@@ -1,6 +1,6 @@
 import { Command } from "@interfaces/commands";
-import { ApplicationCommandType } from "discord.js";
 import { params } from "./say.params";
+import { ApplicationCommandType, MessageFlags } from "discord.js";
 
 export default new Command({
   name: "say",
@@ -14,7 +14,7 @@ export default new Command({
 
     await interaction.reply({
       content: `Você disse: ${message}`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   },
 });
