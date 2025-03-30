@@ -1,4 +1,5 @@
 import {
+  ApplicationCommandDataResolvable,
   Client,
   ClientEvents,
   Collection,
@@ -40,6 +41,7 @@ export class ClientDiscord extends Client {
 
   public async start() {
     await this.login(secrets.DISCORD_TOKEN);
+    this.applyCommands();
   }
 
   public async registerEvents<K extends keyof ClientEvents>(
@@ -66,5 +68,36 @@ export class ClientDiscord extends Client {
     }
   }
 
-  public async registerCommands() {}
+  public async registerCommands(commands: CommandType) {
+    const { name, buttons, selects, modals } = commands;
+
+    if (name) {
+      this.commands.set(name, commands);
+
+      if (buttons) {
+        buttons.forEach((execute, key) => this.buttons.set(key, execute));
+      }
+
+      if (selects) {
+        selects.forEach((execute, key) => this.select.set(key, execute));
+      }
+
+      if (modals) {
+        modals.forEach((execute, key) => this.modals.set(key, execute));
+      }
+    }
+  }
+
+  public applyCommands() {
+    const listOfCommands: Array<ApplicationCommandDataResolvable> =
+      this.commands.map((command) => ({
+        ...command,
+      }));
+
+    this.on("ready", async () => {
+      await this.application?.commands.set(listOfCommands);
+
+      console.log("Commands applied successfully!");
+    });
+  }
 }
