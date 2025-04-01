@@ -16,7 +16,8 @@ A **TypeScript** foi escolhida por ser uma linguagem forte e de simples aprendiz
 1. Entre na [nossa comunidade do Discord](https://discord.gg/WGgfYEwvzn)
 2. Adicione o canal #projetos-da-comunidade na sua lista
 3. Dentro de #projetos-da-comunidade, procure a conversa **INSTRUÇÕES SOBRE OS PROJETOS**
-4. Clique no botão indicado pelo Slashbot: <img src="./docs/img/print-projetos-da-comunidade.png" alt="Print de uma mensagem do Slashbot, com os dizeres: 'Clique no botão para receber o cargo. Clique no botão abaixo para pegar o cargo, ou clique novamente para removê-lo'.">
+4. Clique no botão indicado pelo Slashbot: 
+<img src="./docs/img/print-projetos-da-comunidade.png" alt="Print de uma mensagem do Slashbot, com os dizeres: 'Clique no botão para receber o cargo. Clique no botão abaixo para pegar o cargo, ou clique novamente para removê-lo'.">
 5. Parabéns, agora você pode interagir com os Orangers que já estão trabalhando no projeto! Agora, podemos te adicionar como colaborador para facilitar suas contribuições 🎉
 
 Uma outra opção é fazer um fork do projeto e abrir uma *pull request* quando terminar. Apenas lembre-se que você poderá estar trabalhando com uma base desatualizada se escolher trabalhar desta forma ⚠️
