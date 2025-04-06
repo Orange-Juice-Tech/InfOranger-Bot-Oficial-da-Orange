@@ -1,6 +1,5 @@
-import dotenv from "dotenv";
-dotenv.config();
+import getEnv from "@shared/utils/getEnv";
 
 export default {
-  DISCORD_TOKEN: process.env.DISCORD_TOKEN,
+  DISCORD_TOKEN: getEnv("DISCORD_TOKEN"),
 };
