@@ -1,6 +1,7 @@
+import getEnv from "@shared/utils/getEnv";
+
 export default {
-  // General configuration
-  botName: "InfOrange",
-  serverId: "847518545156112424",
-  serverName: "Orange Juice",
+  botName: getEnv("BOT_NAME", "Orange Juice"),
+  guildId: getEnv("DISCORD_GUILD_ID", "847518545156112424"),
+  guildName: getEnv("DISCORD_GUILD_NAME=", "Orange Juice"),
 };
