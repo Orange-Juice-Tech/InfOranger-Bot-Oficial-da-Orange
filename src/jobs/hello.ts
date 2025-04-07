@@ -1,5 +1,7 @@
 import { jobInterface } from "@interfaces/jobs";
 import { ClientDiscord } from "../client";
+import channels from "@configs/channels";
+import general from "@configs/general";
 
 class HelloJob implements jobInterface {
   client: ClientDiscord;
@@ -8,13 +10,13 @@ class HelloJob implements jobInterface {
 
   constructor(client: ClientDiscord) {
     this.client = client;
-    this.cron = "0 * * * *";
+    this.cron = "*/30 * * * *";
     this.description = "Hello Job";
   }
 
   async execute() {
     const guild = this.client.guilds.cache.find(
-      (guild) => guild.id === "YOUR_GUILD_ID",
+      (guild) => guild.id === general.guildId,
     );
 
     if (!guild) {
@@ -22,7 +24,7 @@ class HelloJob implements jobInterface {
       return;
     }
     const channel = guild.channels.cache.find(
-      (channel) => channel.id === "YOUR_CHANNEL_ID",
+      (channel) => channel.id === channels.announcements.geral,
     );
 
     if (!channel || !channel.isSendable()) {
