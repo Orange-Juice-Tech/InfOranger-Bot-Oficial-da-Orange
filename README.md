@@ -31,7 +31,7 @@ Este é um projeto Open Source e está aceitando contribuições. Para aumentar 
 2. Siga as convenções estabelecidas pelas contribuições anteriores (issues com sugestões de features devem começar com a palavra-chave FEATURE, commits devem começar com uma palavra descritiva como chore: e docs:, os nomes de variáveis devem estar em inglês, etc)
 3. Siga o que souber das convenções *clean code*, para que possamos entender direitinho as mudanças que você idealizou
 4. Faça suas mudanças na branch associada à feature. Por exemplo, o desenvolvimento de uma feature que se baseie na issue de número 1 será feito em uma branch chamada ``1-lembrete-orange-hub``
-5. Caso a sua feature ainda não possua uma branch, crie-a a partir da branch ``develop``. Basta escrever ``git checkout develop`` e, em seguida, ``git branch x-new-feature`` no seu Git Bash.
+5. Caso a sua feature ainda não possua uma branch, crie-a a partir da branch ``develop``. Basta escrever ``git checkout develop`` e, em seguida, ``git branch x-new-feature`` no seu Git Bash. Então, escreva ``git checkout x-new-feature`` para começar o desenvolvimento!
 
 Se não tiver certeza de como começar a contribuir, leia os arquivos e procure por erros pequenos. Alguma coisa neste README não ficou clara? Algum dev nomeou uma variável com as boas práticas de outra linguagem de programação? Ou será que você encontrou algum erro de digitação? Faça suas modificações e envie aqui pra gente!
 
