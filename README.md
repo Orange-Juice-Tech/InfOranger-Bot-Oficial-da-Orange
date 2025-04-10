@@ -32,10 +32,11 @@ Este é um projeto Open Source e está aceitando contribuições. Para aumentar 
 3. Siga o que souber das convenções *clean code*, para que possamos entender direitinho as mudanças que você idealizou
 4. Faça suas mudanças na branch associada à feature. Por exemplo, o desenvolvimento de uma feature que se baseie na issue de número 1 será feito em uma branch chamada ``1-lembrete-orange-hub``
 5. Caso a sua feature ainda não possua uma branch, crie-a a partir da branch ``develop``. Basta escrever ``git checkout develop`` e, em seguida, ``git branch x-new-feature`` no seu Git Bash.
+6. Para se certificar de que está desenvolvendo na branch correta, escreva ``git checkout x-newfeature`` no terminal antes de iniciar o desenvolvimento.
 
-Se não tiver certeza de como começar a contribuir, leia os arquivos e procure por erros pequenos. Alguma coisa neste README não ficou clara? Algum dev nomeou uma variável com as boas práticas de outra linguagem de programação? Ou será que você encontrou algum erro de digitação? Faça suas modificações e envie aqui pra gente!
+Se não tiver certeza de como começar a contribuir, leia os arquivos e procure por erros pequenos. Alguma coisa neste README não ficou clara? Algum dev nomeou uma variável com as boas práticas de outra linguagem de programação? Ou será que você encontrou algum erro de digitação? Faça suas modificações e envie aqui pra gente! [Recomendamos este vídeo para colaboradores iniciantes!](https://www.youtube.com/watch?v=ympjraN3JyI)
 
-Para mais detalhes sobre como contribuir, consulte a [nossa documentação lá no Notion](https://sucodelarangela.notion.site/Guia-InfOranger-Bot-Oficial-da-Orange-Juice-Tech-16d59ee68f3a805491abf27421057bdf), que lá colocamos tudo mastigadinho pra não ficarem dúvidas!
+Para mais detalhes sobre como contribuir, consulte a [nossa documentação lá no Notion](https://sucodelarangela.notion.site/Guia-InfOranger-Bot-Oficial-da-Orange-Juice-Tech-16d59ee68f3a805491abf27421057bdf), que lá colocamos tudo mastigadinho! Se ainda tiver alguma dúvida, dá uma passada na nossa comunidade!
 
 ### Posso fazer minha própria versão do InfOranger?
 De acordo com a GNU General Public License, qualquer um pode usar, distribuir, ou modificar este código sem que seja efetuado nenhum tipo de pagamento. Então, se quiser usar o código do InfOranger como base para um projeto pessoal, vai em frente e faz um fork! 😉
