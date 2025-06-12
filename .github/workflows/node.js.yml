@@ -2,9 +2,7 @@ name: Deploy Bot CI
 
 on:
   push:
-
-    branches: [ "main" ]
-
+    branches: ["main"]
 
 jobs:
   deploy:
@@ -36,9 +34,8 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "BOT_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
           echo "NODE_ENV=production" >> .env
 
       - name: Restart PM2 process
-        run: pm2 startOrRestart ecosystem.config.js --only InfOranger
-
+        run: pm2 startOrRestart ecosystem.config.js --only InfOranger --silent
