@@ -6,7 +6,7 @@ module.exports = {
       script: "npm",
       args: "start",
       instances: 1,
-      autorestart: true,
+      autorestart: false,
       watch: false,
       max_memory_restart: "500M",
     },
