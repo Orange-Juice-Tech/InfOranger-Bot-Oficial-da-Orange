@@ -2,7 +2,7 @@ name: Deploy Bot CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   deploy:
@@ -14,23 +14,28 @@ jobs:
         node-version: [22.x]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
 
-    - name: Install Yarn
-      run: corepack enable
+      - name: Install Yarn
+        run: corepack enable
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-    - name: Build project (if build script exists)
-      run: yarn build || echo "No build step found"
+      - name: Build project (if build script exists)
+        run: yarn build || echo "No build step found"
 
-    - name: Restart PM2 process
-      run: pm2 startOrRestart ecosystem.config.js --only InfOranger
+      - name: Create .env file
+        run: |
+          echo "BOT_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+          echo "NODE_ENV=production" >> .env
+
+      - name: Restart PM2 process
+        run: pm2 startOrRestart ecosystem.config.js --only InfOranger
