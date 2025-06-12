@@ -1,0 +1,36 @@
+name: Deploy Bot CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    name: Build and Deploy Bot
+    runs-on: self-hosted
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'yarn'
+
+    - name: Install Yarn
+      run: corepack enable
+
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Build project (if build script exists)
+      run: yarn build || echo "No build step found"
+
+    - name: Restart PM2 process
+      run: pm2 startOrRestart ecosystem.config.js --only InfOranger
