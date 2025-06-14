@@ -2,7 +2,10 @@
 import getEnv from "@shared/utils/getEnv";
 
 export default {
-  announcements: {
-    geral: getEnv("DISCORD_CHANNEL_ANNOUNCEMENTS_GERAL", "851863909056774154"),
+  notification: {
+    projectsDivulgation: getEnv(
+      "CHANNEL_NOTIFICATION_PROJECTS_DIVULGATION",
+      "851864181967421461",
+    ),
   },
 };

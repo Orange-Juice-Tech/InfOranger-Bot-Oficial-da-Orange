@@ -2,6 +2,9 @@ import { promises as fs } from "fs";
 import path from "path";
 import { CommandType } from "@interfaces/commands";
 import { ClientDiscord } from "../client";
+import { logger } from "@logging/logger";
+import chalk from "chalk";
+import isDev from "@shared/utils/isDev";
 
 export class CommandLoader {
   constructor(private clientDiscord: ClientDiscord) {}
@@ -16,12 +19,10 @@ export class CommandLoader {
         const fullPath = path.join(dir, file.name);
 
         if (file.isDirectory()) {
-          /*  if (!isDev && file.name === "development") continue; */
+          if (!isDev() && file.name === "dev") continue;
 
           await readCommandsRecursively(fullPath);
         } else if (file.name.endsWith(".ts") || file.name.endsWith(".js")) {
-          if (file.name.endsWith(".params.ts")) continue;
-
           const command = await import(fullPath);
 
           if (command.default?.name && command.default?.execute) {
@@ -44,9 +45,17 @@ export class CommandLoader {
         this.clientDiscord.registerCommands(command);
       }
 
-      console.log("Commands loaded successfully:");
+      logger.success({
+        prefix: "discord-commands",
+        message: `Carregado com sucesso ${chalk.blueBright(
+          commands.length,
+        )} comandos.`,
+      });
     } catch (error) {
-      console.error("Error loading commands:", error);
+      logger.error({
+        prefix: "discord-commands",
+        message: `Erro ao carregar comandos: ${error}`,
+      });
     }
   }
 }

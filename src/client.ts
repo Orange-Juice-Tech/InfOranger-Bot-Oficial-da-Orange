@@ -14,6 +14,8 @@ import {
   ComponentsSelect,
 } from "@interfaces/commands";
 import { EventTypes } from "@interfaces/events";
+import { ButtonHandle } from "@interfaces/buttonHandle";
+import { logger } from "@logging/logger";
 
 export class ClientDiscord extends Client {
   public commands: Collection<string, CommandType> = new Collection();
@@ -29,12 +31,14 @@ export class ClientDiscord extends Client {
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildMessageReactions,
       ],
       partials: [
         Partials.Message,
         Partials.Channel,
         Partials.GuildMember,
         Partials.User,
+        Partials.Reaction,
       ],
     });
   }
@@ -54,7 +58,10 @@ export class ClientDiscord extends Client {
         try {
           execute(...args, this);
         } catch (error) {
-          console.error(`Error executing event ${name}:`, error);
+          logger.error({
+            prefix: "discord-events",
+            message: `Erro ao executar o evento ${name}: ${error}`,
+          });
         }
       });
     } else {
@@ -62,7 +69,10 @@ export class ClientDiscord extends Client {
         try {
           execute(...args, this);
         } catch (error) {
-          console.error(`Error executing event ${name}:`, error);
+          logger.error({
+            prefix: "discord-events",
+            message: `Erro ao executar o evento ${name}: ${error}`,
+          });
         }
       });
     }
@@ -88,6 +98,14 @@ export class ClientDiscord extends Client {
     }
   }
 
+  public async registerButtons(button: ButtonHandle) {
+    const { name, execute } = button;
+
+    if (name) {
+      this.buttons.set(name, execute);
+    }
+  }
+
   public applyCommands() {
     const listOfCommands: Array<ApplicationCommandDataResolvable> =
       this.commands.map((command) => ({
@@ -97,7 +115,10 @@ export class ClientDiscord extends Client {
     this.on("ready", async () => {
       await this.application?.commands.set(listOfCommands);
 
-      console.log("Commands applied successfully!");
+      logger.success({
+        prefix: "discord-startup-commands",
+        message: `Comandos aplicados com sucesso: ${listOfCommands.length}.`,
+      });
     });
   }
 }

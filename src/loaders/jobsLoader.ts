@@ -3,6 +3,9 @@ import fs from "fs/promises";
 import cron from "node-cron";
 import { ClientDiscord } from "../client";
 import { jobInterface } from "@interfaces/jobs";
+import { logger } from "@logging/logger";
+import chalk from "chalk";
+import isDev from "@shared/utils/isDev";
 
 export class JobsLoader {
   constructor(private readonly client: ClientDiscord) {}
@@ -13,14 +16,23 @@ export class JobsLoader {
 
       for (const job of jobs) {
         cron.schedule(job.cron, async () => {
-          console.log(`Executing job: ${job.description}`);
+          logger.info({
+            prefix: "discord-jobs",
+            message: `Executando job: ${job.description}`,
+          });
           await job.execute();
         });
       }
 
-      console.log(`Successfully loaded ${jobs.length} jobs.`);
+      logger.success({
+        prefix: "discord-jobs",
+        message: `Carregado com sucesso ${chalk.blueBright(jobs.length)} jobs.`,
+      });
     } catch (error) {
-      console.error("Error loading jobs:", error);
+      logger.error({
+        prefix: "discord-jobs",
+        message: `Erro ao carregar jobs: ${error.message}`,
+      });
     }
   }
 
@@ -43,6 +55,9 @@ export class JobsLoader {
       const fullPath = path.join(dir, file.name);
 
       if (file.isDirectory()) {
+        if (!isDev() && file.name === "dev") {
+          continue;
+        }
         await this.readJobsRecursively(fullPath, jobs);
         continue;
       }
@@ -63,7 +78,10 @@ export class JobsLoader {
           }
         }
       } catch (error) {
-        console.error(`Error loading job file ${fullPath}:`, error);
+        logger.error({
+          prefix: "discord-jobs",
+          message: `Erro ao carregar o arquivo de job ${fullPath}: ${error}`,
+        });
       }
     }
   }

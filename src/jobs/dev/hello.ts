@@ -1,5 +1,5 @@
 import { jobInterface } from "@interfaces/jobs";
-import { ClientDiscord } from "../client";
+import { ClientDiscord } from "../../client";
 import channels from "@configs/channels";
 import general from "@configs/general";
 
@@ -24,7 +24,7 @@ class HelloJob implements jobInterface {
       return;
     }
     const channel = guild.channels.cache.find(
-      (channel) => channel.id === channels.announcements.geral,
+      (channel) => channel.id === channels.notification.projectsDivulgation,
     );
 
     if (!channel || !channel.isSendable()) {

@@ -24,11 +24,17 @@
       "@configs/*": [
         "src/configs/*"
       ],
+      "@logging/*": [
+        "src/logging/*"
+      ],
       "@loaders/*": [
         "src/loaders/*"
       ],
       "@storage/*": [
         "src/storage/*"
+      ],
+      "@services/*": [
+        "src/services/*"
       ],
       "@constants/*": [
         "src/shared/constants/*"
