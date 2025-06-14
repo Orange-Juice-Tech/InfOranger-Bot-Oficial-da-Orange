@@ -30,6 +30,9 @@
       "@storage/*": [
         "src/storage/*"
       ],
+      "@services/*": [
+        "src/services/*"
+      ],
       "@constants/*": [
         "src/shared/constants/*"
       ],
