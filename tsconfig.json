@@ -24,6 +24,9 @@
       "@configs/*": [
         "src/configs/*"
       ],
+      "@logging/*": [
+        "src/logging/*"
+      ],
       "@loaders/*": [
         "src/loaders/*"
       ],
