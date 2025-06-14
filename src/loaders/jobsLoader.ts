@@ -5,6 +5,7 @@ import { ClientDiscord } from "../client";
 import { jobInterface } from "@interfaces/jobs";
 import { logger } from "@logging/logger";
 import chalk from "chalk";
+import isDev from "@shared/utils/isDev";
 
 export class JobsLoader {
   constructor(private readonly client: ClientDiscord) {}
@@ -51,6 +52,9 @@ export class JobsLoader {
       const fullPath = path.join(dir, file.name);
 
       if (file.isDirectory()) {
+        if (!isDev() && file.name === "dev") {
+          continue;
+        }
         await this.readJobsRecursively(fullPath, jobs);
         continue;
       }
