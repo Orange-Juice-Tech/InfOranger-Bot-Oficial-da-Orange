@@ -20,8 +20,6 @@ export class CommandLoader {
 
           await readCommandsRecursively(fullPath);
         } else if (file.name.endsWith(".ts") || file.name.endsWith(".js")) {
-          if (file.name.endsWith(".params.ts")) continue;
-
           const command = await import(fullPath);
 
           if (command.default?.name && command.default?.execute) {
