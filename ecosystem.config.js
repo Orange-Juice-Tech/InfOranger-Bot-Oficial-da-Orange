@@ -3,12 +3,12 @@ module.exports = {
   apps: [
     {
       name: "InfOranger",
-      script: "npm",
+      script: "yarn",
       args: "start",
       instances: 1,
       autorestart: false,
       watch: false,
-      max_memory_restart: "500M",
+      max_memory_restart: "600M",
     },
   ],
 };
