@@ -14,6 +14,7 @@ import {
   ComponentsSelect,
 } from "@interfaces/commands";
 import { EventTypes } from "@interfaces/events";
+import { ButtonHandle } from "@interfaces/buttonHandle";
 
 export class ClientDiscord extends Client {
   public commands: Collection<string, CommandType> = new Collection();
@@ -29,12 +30,14 @@ export class ClientDiscord extends Client {
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildMessageReactions,
       ],
       partials: [
         Partials.Message,
         Partials.Channel,
         Partials.GuildMember,
         Partials.User,
+        Partials.Reaction,
       ],
     });
   }
@@ -85,6 +88,14 @@ export class ClientDiscord extends Client {
       if (modals) {
         modals.forEach((execute, key) => this.modals.set(key, execute));
       }
+    }
+  }
+
+  public async registerButtons(button: ButtonHandle) {
+    const { name, execute } = button;
+
+    if (name) {
+      this.buttons.set(name, execute);
     }
   }
 
