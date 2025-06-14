@@ -1,5 +1,5 @@
 import { Event } from "@interfaces/events";
-import { logger } from "@logging/index";
+import { logger } from "@logging/logger";
 import chalk from "chalk";
 
 export default new Event({
