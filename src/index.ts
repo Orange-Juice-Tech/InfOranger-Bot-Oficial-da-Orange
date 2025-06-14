@@ -18,8 +18,6 @@ async function bootstrap() {
     await jobsLoader.registerJobs();
 
     await client.start();
-
-    console.log("Client started successfully.");
   } catch (error) {
     console.error("Error starting the client:", error);
   }

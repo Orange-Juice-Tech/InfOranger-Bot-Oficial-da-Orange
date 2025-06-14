@@ -15,6 +15,7 @@ import {
 } from "@interfaces/commands";
 import { EventTypes } from "@interfaces/events";
 import { ButtonHandle } from "@interfaces/buttonHandle";
+import { logger } from "@logging/logger";
 
 export class ClientDiscord extends Client {
   public commands: Collection<string, CommandType> = new Collection();
@@ -108,7 +109,10 @@ export class ClientDiscord extends Client {
     this.on("ready", async () => {
       await this.application?.commands.set(listOfCommands);
 
-      console.log("Commands applied successfully!");
+      logger.success({
+        prefix: "discord-startup-commands",
+        message: `Successfully applied ${listOfCommands.length} commands.`,
+      });
     });
   }
 }
