@@ -2,6 +2,8 @@ import { promises as fs } from "fs";
 import path from "path";
 import { CommandType } from "@interfaces/commands";
 import { ClientDiscord } from "../client";
+import { logger } from "@logging/logger";
+import chalk from "chalk";
 
 export class CommandLoader {
   constructor(private clientDiscord: ClientDiscord) {}
@@ -42,7 +44,12 @@ export class CommandLoader {
         this.clientDiscord.registerCommands(command);
       }
 
-      console.log("Commands loaded successfully:");
+      logger.success({
+        prefix: "discord-commands",
+        message: `loaded successfully ${chalk.blueBright(
+          commands.length,
+        )} commands.`,
+      });
     } catch (error) {
       console.error("Error loading commands:", error);
     }

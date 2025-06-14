@@ -3,6 +3,8 @@ import fs from "fs/promises";
 import cron from "node-cron";
 import { ClientDiscord } from "../client";
 import { jobInterface } from "@interfaces/jobs";
+import { logger } from "@logging/logger";
+import chalk from "chalk";
 
 export class JobsLoader {
   constructor(private readonly client: ClientDiscord) {}
@@ -18,9 +20,15 @@ export class JobsLoader {
         });
       }
 
-      console.log(`Successfully loaded ${jobs.length} jobs.`);
+      logger.success({
+        prefix: "discord-jobs",
+        message: `Successfully loaded ${chalk.blueBright(jobs.length)} jobs.`,
+      });
     } catch (error) {
-      console.error("Error loading jobs:", error);
+      logger.error({
+        prefix: "discord-jobs",
+        message: `Error loading jobs: ${error.message}`,
+      });
     }
   }
 

@@ -2,6 +2,8 @@ import { ClientDiscord } from "../client";
 import path from "path";
 import fs from "fs/promises";
 import { ButtonHandle } from "@interfaces/buttonHandle";
+import { logger } from "@logging/logger";
+import chalk from "chalk";
 
 export class ButtonsLoader {
   constructor(private readonly client: ClientDiscord) {}
@@ -14,7 +16,10 @@ export class ButtonsLoader {
         this.client.registerButtons(button);
       }
 
-      console.log(`Successfully loaded ${buttons.length} buttons handler.`);
+      logger.success({
+        prefix: "discord-buttons",
+        message: `Successfully loaded ${chalk.blueBright(buttons.length)} buttons handler.`,
+      });
     } catch (error) {
       console.error("Error loading buttons handler:", error);
     }

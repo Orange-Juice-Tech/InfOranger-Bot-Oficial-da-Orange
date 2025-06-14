@@ -3,6 +3,8 @@ import { ClientDiscord } from "../client";
 import path from "path";
 import fs from "fs/promises";
 import { Event } from "@interfaces/events";
+import { logger } from "@logging/logger";
+import chalk from "chalk";
 
 export class EventsLoader {
   constructor(private readonly client: ClientDiscord) {}
@@ -15,7 +17,10 @@ export class EventsLoader {
         this.client.registerEvents(event.event);
       }
 
-      console.log(`Successfully loaded ${events.length} events.`);
+      logger.success({
+        prefix: "discord-events",
+        message: `Successfully loaded ${chalk.blueBright(events.length)} events.`,
+      });
     } catch (error) {
       console.error("Error loading events:", error);
     }
