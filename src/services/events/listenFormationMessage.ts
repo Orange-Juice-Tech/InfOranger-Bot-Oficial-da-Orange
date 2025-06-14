@@ -1,4 +1,6 @@
 import { Message, OmitPartialGroupDMChannel } from "discord.js";
+import { adminPermission } from "@shared/utils/AdminPermission";
+import isDev from "@shared/utils/isDev";
 
 class ListenFormationMessageService {
   public async listen(
@@ -15,6 +17,17 @@ class ListenFormationMessageService {
     const isFormationMessage = testOne.test(content) && textTwo.test(content);
 
     if (!isFormationMessage) {
+      return;
+    }
+
+    const isAdmin = await adminPermission.hasPermission(interaction);
+
+    if (isAdmin) {
+      if (isDev()) {
+        console.log(
+          `Mensagem do admin ${interaction.author.username} ignorada`,
+        );
+      }
       return;
     }
 
