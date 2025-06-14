@@ -19,10 +19,13 @@ export class EventsLoader {
 
       logger.success({
         prefix: "discord-events",
-        message: `Successfully loaded ${chalk.blueBright(events.length)} events.`,
+        message: `Carregado com sucesso ${chalk.blueBright(events.length)} eventos.`,
       });
     } catch (error) {
-      console.error("Error loading events:", error);
+      logger.error({
+        prefix: "discord-events",
+        message: `Erro ao carregar eventos: ${error}`,
+      });
     }
   }
 
@@ -61,7 +64,10 @@ export class EventsLoader {
           events.push(event);
         }
       } catch (error) {
-        console.error(`Error loading event file ${fullPath}:`, error);
+        logger.error({
+          prefix: "discord-events",
+          message: `Erro ao carregar o arquivo de evento ${fullPath}: ${error}`,
+        });
       }
     }
   }

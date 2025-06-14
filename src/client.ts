@@ -58,7 +58,10 @@ export class ClientDiscord extends Client {
         try {
           execute(...args, this);
         } catch (error) {
-          console.error(`Error executing event ${name}:`, error);
+          logger.error({
+            prefix: "discord-events",
+            message: `Erro ao executar o evento ${name}: ${error}`,
+          });
         }
       });
     } else {
@@ -66,7 +69,10 @@ export class ClientDiscord extends Client {
         try {
           execute(...args, this);
         } catch (error) {
-          console.error(`Error executing event ${name}:`, error);
+          logger.error({
+            prefix: "discord-events",
+            message: `Erro ao executar o evento ${name}: ${error}`,
+          });
         }
       });
     }
@@ -111,7 +117,7 @@ export class ClientDiscord extends Client {
 
       logger.success({
         prefix: "discord-startup-commands",
-        message: `Successfully applied ${listOfCommands.length} commands.`,
+        message: `Comandos aplicados com sucesso: ${listOfCommands.length}.`,
       });
     });
   }

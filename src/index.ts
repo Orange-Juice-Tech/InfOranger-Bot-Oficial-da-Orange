@@ -19,21 +19,24 @@ async function bootstrap() {
 
     await client.start();
   } catch (error) {
-    console.error("Error starting the client:", error);
+    logger.error({
+      prefix: "bootstrap",
+      message: `Erro ao iniciar o cliente: ${error}`,
+    });
   }
 }
 
 process.on("uncaughtException", (error) => {
   logger.error({
     prefix: "uncaughtException",
-    message: "Error on application: " + error,
+    message: `Erro na aplicação: ${error}`,
   });
 });
 
 process.on("unhandledRejection", (reason) => {
   logger.error({
     prefix: "unhandled-rejection",
-    message: "Error on application: " + reason,
+    message: `Erro na aplicação: ${reason}`,
   });
 });
 

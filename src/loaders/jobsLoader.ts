@@ -16,19 +16,22 @@ export class JobsLoader {
 
       for (const job of jobs) {
         cron.schedule(job.cron, async () => {
-          console.log(`Executing job: ${job.description}`);
+          logger.info({
+            prefix: "discord-jobs",
+            message: `Executando job: ${job.description}`,
+          });
           await job.execute();
         });
       }
 
       logger.success({
         prefix: "discord-jobs",
-        message: `Successfully loaded ${chalk.blueBright(jobs.length)} jobs.`,
+        message: `Carregado com sucesso ${chalk.blueBright(jobs.length)} jobs.`,
       });
     } catch (error) {
       logger.error({
         prefix: "discord-jobs",
-        message: `Error loading jobs: ${error.message}`,
+        message: `Erro ao carregar jobs: ${error.message}`,
       });
     }
   }
@@ -75,7 +78,10 @@ export class JobsLoader {
           }
         }
       } catch (error) {
-        console.error(`Error loading job file ${fullPath}:`, error);
+        logger.error({
+          prefix: "discord-jobs",
+          message: `Erro ao carregar o arquivo de job ${fullPath}: ${error}`,
+        });
       }
     }
   }

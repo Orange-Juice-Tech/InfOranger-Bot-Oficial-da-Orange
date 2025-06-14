@@ -18,10 +18,10 @@ export class ButtonsLoader {
 
       logger.success({
         prefix: "discord-buttons",
-        message: `Successfully loaded ${chalk.blueBright(buttons.length)} buttons handler.`,
+        message: `Sucesso ao carregar ${chalk.blueBright(buttons.length)} botões handler.`,
       });
     } catch (error) {
-      console.error("Error loading buttons handler:", error);
+      console.error("Error ao carregar botões:", error);
     }
   }
 
@@ -60,7 +60,10 @@ export class ButtonsLoader {
           buttons.push(button);
         }
       } catch (error) {
-        console.error(`Error loading button file ${fullPath}:`, error);
+        console.error(
+          `Erro ao carregar o arquivo do botão ${fullPath}:`,
+          error,
+        );
       }
     }
   }

@@ -43,7 +43,7 @@ class StarDay implements jobInterface {
     if (!guild) {
       logger.error({
         prefix: "discord-job-developStarDay",
-        message: "Guild not found",
+        message: "A guilda não foi encontrada",
       });
       return;
     }
@@ -54,7 +54,7 @@ class StarDay implements jobInterface {
     if (!channel || !channel.isSendable()) {
       logger.error({
         prefix: "discord-job-developStarDay",
-        message: "Channel not found or not sendable",
+        message: "Canal não encontrado ou não é possível enviar mensagens",
       });
       return;
     }

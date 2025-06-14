@@ -47,12 +47,15 @@ export class CommandLoader {
 
       logger.success({
         prefix: "discord-commands",
-        message: `loaded successfully ${chalk.blueBright(
+        message: `Carregado com sucesso ${chalk.blueBright(
           commands.length,
-        )} commands.`,
+        )} comandos.`,
       });
     } catch (error) {
-      console.error("Error loading commands:", error);
+      logger.error({
+        prefix: "discord-commands",
+        message: `Erro ao carregar comandos: ${error}`,
+      });
     }
   }
 }
