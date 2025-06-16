@@ -1,6 +1,7 @@
 import { Message, OmitPartialGroupDMChannel } from "discord.js";
 import { adminPermission } from "@shared/utils/AdminPermission";
 import isDev from "@shared/utils/isDev";
+import channelsToIgnore from "@shared/utils/channelsToIgnore";
 
 class ListenFormationMessageService {
   public async listen(
@@ -8,6 +9,22 @@ class ListenFormationMessageService {
   ) {
     const content = interaction.content.toLowerCase();
     const channel = interaction.channel;
+
+    const channelId = channel.id;
+    const skipList = [
+      "1324428538551603202",
+      "1235574139033620500",
+      "977255683286245436",
+      "1080235206486786138",
+      "1355177989503189214",
+      "1253081024251039804",
+      "1202631135960764506",
+      "1252701167872638986",
+    ];
+
+    const shouldIgnore = channelsToIgnore(channelId, skipList);
+
+    if (shouldIgnore) return;
 
     if (!channel.isTextBased()) return;
 
