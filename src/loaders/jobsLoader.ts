@@ -15,13 +15,19 @@ export class JobsLoader {
       const jobs = await this.loadJobs();
 
       for (const job of jobs) {
-        cron.schedule(job.cron, async () => {
-          logger.info({
-            prefix: "discord-jobs",
-            message: `Executando job: ${job.description}`,
-          });
-          await job.execute();
-        });
+        cron.schedule(
+          job.cron,
+          async () => {
+            logger.info({
+              prefix: "discord-jobs",
+              message: `Executando job: ${job.description}`,
+            });
+            await job.execute();
+          },
+          {
+            timezone: "America/Sao_Paulo",
+          },
+        );
       }
 
       logger.success({
