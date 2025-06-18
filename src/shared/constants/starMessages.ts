@@ -1,4 +1,4 @@
-const developMessage = `# DIA DA ESTRELINHA ⭐️
+const developMessage = `# DIA DA ESTRELINHA - DEV ⭐️
 
 ## Chegou a hora de dar um up naquele seu repositório favorito!
 
@@ -18,7 +18,7 @@ Mandem seus próprios projetos / portfólios que vocês queiram divulgar para qu
 
 ## :sparkles: **A regra é clara Arnaldo:** Mandou seu portfolio, tem que curtir o dos outros coleguinhas tbm hein!
 
-@UX | User Experience Designer @UI | User Interface Designer @Designer 
+
 || @everyone @Membro  @here ||
 ## BORA COMEÇAR! :arrow_down:`;
 
