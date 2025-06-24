@@ -1,5 +1,6 @@
 import { Event } from "@interfaces/events";
 import { listenFormationMessageService } from "@services/events/listenFormationMessage";
+import { listenHackthonMessageService } from "@services/events/listenHackthonMessage";
 import { reactProjectsWithStarService } from "@services/events/reactProjectsWithStar";
 
 export default new Event({
@@ -9,5 +10,6 @@ export default new Event({
 
     await reactProjectsWithStarService.listen(interaction);
     await listenFormationMessageService.listen(interaction);
+    await listenHackthonMessageService.listen(interaction);
   },
 });
