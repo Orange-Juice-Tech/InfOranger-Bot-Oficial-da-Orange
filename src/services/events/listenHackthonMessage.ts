@@ -32,7 +32,7 @@ class ListenHackthonMessageService {
 
     if (!channel.isTextBased()) return;
 
-    const hackthonRegex = /\bhackthon\b/i;
+    const hackthonRegex = /\bhack[at]?h?[ao]n?th?[ao]n\b/i;
 
     const isValidMessage = hackthonRegex.test(content);
 
@@ -40,7 +40,7 @@ class ListenHackthonMessageService {
       return;
     }
 
-    const isAdmin = await adminPermission.hasPermission(interaction);
+    /* const isAdmin = await adminPermission.hasPermission(interaction);
 
     if (isAdmin) {
       if (isDev()) {
@@ -49,12 +49,12 @@ class ListenHackthonMessageService {
         );
       }
       return;
-    }
+    } */
 
     await interaction.react("✅");
 
     const messageToSend = `Olá ${interaction.author}! 👋 
-Que bom que você tem interesse no hackthon! 🚀
+Que bom que você tem interesse no hackathon! 🚀
 
 O hackthon é para **todos os níveis de conhecimento**, **sem requisitos mínimos** ou **experiência**. As vagas ficam abertas até dia **10/07** e você pode ver mais informações no canal: https://discord.com/channels/847518545156112424/1386782080066781295
 
