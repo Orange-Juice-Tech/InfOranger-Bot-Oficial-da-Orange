@@ -32,7 +32,7 @@ class ListenHackthonMessageService {
 
     if (!channel.isTextBased()) return;
 
-    const hackthonRegex = /\bhack[at]?h?[ao]n?th?[ao]n\b/i;
+    const hackthonRegex = /\bhack[at]*h*[ao]*n*th*[ao]*n*\b/i;
 
     const isValidMessage = hackthonRegex.test(content);
 
@@ -40,7 +40,7 @@ class ListenHackthonMessageService {
       return;
     }
 
-    /* const isAdmin = await adminPermission.hasPermission(interaction);
+    const isAdmin = await adminPermission.hasPermission(interaction);
 
     if (isAdmin) {
       if (isDev()) {
@@ -49,7 +49,7 @@ class ListenHackthonMessageService {
         );
       }
       return;
-    } */
+    }
 
     await interaction.react("✅");
 
